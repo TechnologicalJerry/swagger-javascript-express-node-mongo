@@ -1,0 +1,12 @@
+{
+  "name": "javascript-express-node-mongodb",
+  "version": "1.0.0",
+  "description": "NojeJs Backend application with Express and MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node server.js"
+  },
+  "author": "technojerry",
+  "license": "ISC"
+}
