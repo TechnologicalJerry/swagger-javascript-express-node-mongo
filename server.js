@@ -12,7 +12,11 @@ app.get('/blog', (req, res) => {
     res.send('This is blog api');
 })
 
-mongoDb.connect(dBhost).then(() => console.log('MongoDb Connected'));
+mongoDb.connect('mongodb://localhost:27017').then(() => {
+    console.log('MongoDb Connected')
+}).then((error)=>{
+    console.log(error)
+});
 
 app.listen(port, () => {
     console.log(`NodeJs Server running on PORT: ${port}`);
