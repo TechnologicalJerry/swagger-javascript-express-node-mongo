@@ -14,7 +14,7 @@ app.get('/blog', (req, res) => {
 
 mongoDb.connect('mongodb://localhost:27017').then(() => {
     console.log('MongoDb Connected')
-}).then((error)=>{
+}).then((error) => {
     console.log(error)
 });
 
