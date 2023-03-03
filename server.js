@@ -2,7 +2,8 @@ const express = require('express');
 const mongoDb = require('mongoose');
 const app = express();
 const port = 3000;
-// const mongoString = process.env.DATABASE_URL;
+require("dotenv").config();
+const mongoString = process.env.DATABASE_URL;
 
 app.get('/', (req, res) => {
     res.send('Hello, Welcome to nodeJs API');
@@ -12,7 +13,7 @@ app.get('/blog', (req, res) => {
     res.send('This is blog api');
 })
 
-mongoDb.connect(`mongodb://localhost:27017`);
+mongoDb.connect(mongoString);
 const database = mongoDb.connection;
 
 database.on("error", (error) => {
