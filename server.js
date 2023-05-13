@@ -25,8 +25,11 @@ app.listen(port, () => {
     console.log(`NodeJs Server running on PORT: ${port}`);
 })
 
-const users = [];
+const users = ['jerry', 'bill', 'mark'];
+
 app.get('/users', (req, res) => {
-    res.send('Hello, Welcome to nodeJs API', users);
+    console.log('Hello, Welcome to nodeJs API!');
+    console.log('API Health is OKAY!');
+    res.status(200).send(users);
 })
 
