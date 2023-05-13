@@ -21,10 +21,6 @@ database.once('connected', () => {
     console.log('Database Connected');
 })
 
-
-
-
-
 app.get('/', (req, res) => {
     res.send('Hello, Welcome to nodeJs API');
 })
