@@ -1,5 +1,7 @@
 const express = require('express');
 
+const bcrypt = require('bcrypt');
+
 const mongoose = require('mongoose');
 
 const app = express();
@@ -35,10 +37,10 @@ app.get('/users', (req, res) => {
     res.status(200).send(users);
 })
 
-app.post('/users', (req, res) => {
-    let postData = req.body
-    console.log('POSTDATA::', postData);
-    const user = { name: req.body.name, password: req.body.password };
+app.post('/users', async (req, res) => {
+    const salt = await bcrypt.genSalt();
+    const bcryptPassword = await bcrypt.hash(req.body.password, salt);
+    const user = { name: req.body.name, password: bcryptPassword };
     users.push(user);
     res.status(201).send(users);
 })
