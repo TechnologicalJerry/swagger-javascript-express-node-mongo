@@ -43,13 +43,13 @@ app.get('/users', (req, res) => {
     res.status(200).send(users);
 })
 
-// app.post('/users', async (req, res) => {
-//     const salt = await bcrypt.genSalt();
-//     const bcryptPassword = await bcrypt.hash(req.body.password, salt);
-//     const user = { name: req.body.name, password: bcryptPassword };
-//     users.push(user);
-//     res.status(201).send(users);
-// })
+app.post('/users', async (req, res) => {
+    const salt = await bcrypt.genSalt();
+    const bcryptPassword = await bcrypt.hash(req.body.password, salt);
+    const user = { name: req.body.name, password: bcryptPassword };
+    users.push(user);
+    res.status(201).send(users);
+})
 
 // app.post('/users/login', async (req, res) => {
 //     const user = users.find(user => user.name === req.body.name)
