@@ -35,13 +35,13 @@ app.get('/homePage', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-// const users = [];
+const users = [];
 
-// app.get('/users', (req, res) => {
-//     console.log('Hello, Welcome to nodeJs API!');
-//     console.log('API Health is OKAY!');
-//     res.status(200).send(users);
-// })
+app.get('/users', (req, res) => {
+    console.log('Hello, Welcome to nodeJs API!');
+    console.log('API Health is OKAY!');
+    res.status(200).send(users);
+})
 
 // app.post('/users', async (req, res) => {
 //     const salt = await bcrypt.genSalt();
