@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 
 // Create new user
 exports.create = async (req, res) => {
+    console.log("Creating a new user", req.body);
     try {
         const user = await User.create(req.body);
         res.status(201).send(user);
@@ -12,10 +13,13 @@ exports.create = async (req, res) => {
 
 // Get all users
 exports.findAll = async (req, res) => {
+    console.log("Fetching all users");
+    console.log("Fetching all users from the database");
     try {
         const users = await User.find();
         res.send(users);
-    } catch (err) {
+    } catch (error) {
+        console.log("Error fetching users:", error);
         res.status(500).send({ message: err.message });
     }
 };
