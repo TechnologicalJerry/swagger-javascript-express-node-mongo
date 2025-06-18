@@ -7,6 +7,11 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger.config');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // Middleware
 app.use(cors());
 app.use(logger('dev'));
