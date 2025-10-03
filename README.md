@@ -126,10 +126,39 @@ The Swagger UI provides:
 
 ## Testing
 
+### Option 1: Automated Test Script
 Run the test script to verify the API:
 ```bash
 node test-api.js
 ```
+
+### Option 2: Postman Collection
+Import the comprehensive Postman collection for interactive testing:
+
+1. **Import Collection:**
+   - Open Postman
+   - Import `postman/User-CRUD-API.postman_collection.json`
+   - Import `postman/User-CRUD-API.postman_environment.json`
+
+2. **Select Environment:**
+   - Choose "User CRUD API - Development" environment
+
+3. **Start Testing:**
+   - Use the "Authentication" folder to register/login
+   - JWT tokens are automatically saved and used
+   - Test all endpoints with pre-configured requests
+
+**📁 Postman Files:**
+- `postman/User-CRUD-API.postman_collection.json` - Complete API collection
+- `postman/User-CRUD-API.postman_environment.json` - Environment variables
+- `postman/README.md` - Detailed Postman setup guide
+
+**🎯 Postman Features:**
+- Automatic JWT token management
+- Pre-configured test scenarios
+- Error handling tests
+- Admin endpoint testing
+- Response validation
 
 ## Project Structure
 
@@ -150,6 +179,10 @@ node test-api.js
 ├── app.js                  # Express app configuration
 ├── server.js               # Server startup
 ├── test-api.js             # API testing script
+├── postman/                # Postman collection files
+│   ├── User-CRUD-API.postman_collection.json
+│   ├── User-CRUD-API.postman_environment.json
+│   └── README.md
 └── README.md               # Documentation
 ```
 
