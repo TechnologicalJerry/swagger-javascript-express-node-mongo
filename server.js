@@ -8,6 +8,12 @@ var app = require('./app');
 var debug = require('debug')('swagger-javascript-express-node-mongo:server');
 var http = require('http');
 var connectDB = require('./config/database');
+var logger = require('./config/logger');
+
+// Display server startup banner
+logger.info('🚀 ===========================================');
+logger.info('🚀 Starting User CRUD API Server');
+logger.info('🚀 ===========================================');
 
 // Connect to database
 connectDB();
@@ -19,6 +25,13 @@ connectDB();
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// Log server configuration
+logger.info('⚙️  Server Configuration:');
+logger.info(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+logger.info(`🔌 Port: ${port}`);
+logger.info(`📁 Working Directory: ${process.cwd()}`);
+logger.info(`🕐 Start Time: ${new Date().toISOString()}`);
+
 /**
  * Create HTTP server.
  */
@@ -29,6 +42,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+logger.info(`🔄 Starting server on port ${port}...`);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
