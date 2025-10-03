@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var swaggerUi = require('swagger-ui-express');
+var swaggerSpecs = require('./config/swagger');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -22,6 +24,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Swagger Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'User CRUD API Documentation'
+}));
 
 // Routes
 app.use('/', indexRouter);
