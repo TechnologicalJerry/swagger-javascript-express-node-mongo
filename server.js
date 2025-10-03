@@ -7,6 +7,10 @@
 var app = require('./app');
 var debug = require('debug')('swagger-javascript-express-node-mongo:server');
 var http = require('http');
+var connectDB = require('./config/database');
+
+// Connect to database
+connectDB();
 
 /**
  * Get port from environment and store in Express.
