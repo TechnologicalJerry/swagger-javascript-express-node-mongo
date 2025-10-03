@@ -12,6 +12,7 @@ A complete Node.js/Express API with user CRUD operations, JWT authentication, an
 - ✅ Profile Management
 - ✅ MongoDB Integration
 - ✅ CORS Support
+- ✅ Swagger API Documentation
 
 ## Prerequisites
 
@@ -47,6 +48,9 @@ A complete Node.js/Express API with user CRUD operations, JWT authentication, an
    ```bash
    npm start
    ```
+
+6. Access Swagger Documentation:
+   - Open your browser and go to: `http://localhost:3000/api-docs`
 
 ## API Endpoints
 
@@ -107,6 +111,19 @@ curl -X PUT http://localhost:3000/api/users/profile \
   }'
 ```
 
+## API Documentation
+
+The API is fully documented with Swagger/OpenAPI 3.0. Once the server is running, you can access the interactive documentation at:
+
+**🔗 [http://localhost:3000/api-docs](http://localhost:3000/api-docs)**
+
+The Swagger UI provides:
+- Interactive API testing
+- Request/response examples
+- Authentication testing with JWT tokens
+- Schema definitions
+- Error response documentation
+
 ## Testing
 
 Run the test script to verify the API:
@@ -118,7 +135,8 @@ node test-api.js
 
 ```
 ├── config/
-│   └── database.js          # MongoDB connection
+│   ├── database.js          # MongoDB connection
+│   └── swagger.js           # Swagger configuration
 ├── controllers/
 │   └── userController.js    # User CRUD operations
 ├── middleware/
@@ -127,10 +145,12 @@ node test-api.js
 │   └── User.js             # User mongoose schema
 ├── routes/
 │   ├── auth.js             # Authentication routes
-│   └── users.js            # User management routes
+│   ├── users.js            # User management routes
+│   └── index.js            # Main routes
 ├── app.js                  # Express app configuration
 ├── server.js               # Server startup
-└── test-api.js             # API testing script
+├── test-api.js             # API testing script
+└── README.md               # Documentation
 ```
 
 ## Security Features
