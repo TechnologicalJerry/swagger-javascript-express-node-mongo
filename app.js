@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cors = require('cors');
 var swaggerUi = require('swagger-ui-express');
 var swaggerSpecs = require('./config/swagger');
+var winstonLogger = require('./config/logger');
+var requestLogger = require('./middleware/requestLogger');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -19,7 +21,12 @@ app.set('view engine', 'jade');
 // CORS
 app.use(cors());
 
+// Request logging middleware (custom)
+app.use(requestLogger);
+
+// Morgan HTTP request logger
 app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
