@@ -31,7 +31,7 @@ A complete Node.js/Express API with user CRUD operations, JWT authentication, an
 3. Create a `.env` file in the root directory:
    ```env
    # Database
-   MONGODB_URI=mongodb://localhost:27017/swagger-app
+   MONGODB_URI=mongodb://localhost:27017/swagger-javascript-express-node-mongo
    
    # JWT
    JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
@@ -166,7 +166,7 @@ node test-api.js
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| MONGODB_URI | MongoDB connection string | mongodb://localhost:27017/swagger-app |
+| MONGODB_URI | MongoDB connection string | mongodb://localhost:27017/swagger-javascript-express-node-mongo |
 | JWT_SECRET | JWT secret key | your-super-secret-jwt-key |
 | JWT_EXPIRE | JWT expiration time | 7d |
 | PORT | Server port | 3000 |
