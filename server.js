@@ -108,5 +108,15 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+  
+  logger.info('🎉 ===========================================');
+  logger.info('🎉 Server Successfully Started!');
+  logger.info('🎉 ===========================================');
+  logger.info(`🌐 Server running on: http://localhost:${addr.port}`);
+  logger.info(`📚 API Documentation: http://localhost:${addr.port}/api-docs`);
+  logger.info(`🔌 Listening on: ${bind}`);
+  logger.info(`🕐 Server started at: ${new Date().toISOString()}`);
+  logger.info('🎉 ===========================================');
+  
   debug('Listening on ' + bind);
 }
