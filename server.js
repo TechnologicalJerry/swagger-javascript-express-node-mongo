@@ -73,6 +73,7 @@ function normalizePort(val) {
 
 function onError(error) {
   if (error.syscall !== 'listen') {
+    logger.error('❌ Server error (not listen):', error);
     throw error;
   }
 
@@ -83,14 +84,17 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(`❌ ${bind} requires elevated privileges`);
+      logger.error('💡 Try running with sudo or use a different port');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(`❌ ${bind} is already in use`);
+      logger.error('💡 Try using a different port or kill the process using this port');
       process.exit(1);
       break;
     default:
+      logger.error('❌ Unknown server error:', error);
       throw error;
   }
 }
