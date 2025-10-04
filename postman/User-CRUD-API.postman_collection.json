@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-		"name": "User CRUD API with JWT Authentication",
-		"description": "A comprehensive Postman collection for the User CRUD API with JWT authentication, MongoDB integration, and Swagger documentation.",
+		"name": "Swagger Javascript Express Node MongoDB",
+		"description": "A comprehensive Postman collection for the Swagger Javascript Express Node MongoDB, MongoDB integration, and Swagger documentation.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12345678"
 	},
@@ -40,7 +40,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"userName\": \"johndoe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"password123\",\n  \"gender\": \"Male\",\n  \"dob\": \"10-01-1995\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/auth/register",
@@ -101,6 +101,36 @@
 							]
 						},
 						"description": "Login with existing user credentials. The response will include a JWT token that will be automatically saved to the environment for use in subsequent requests."
+					},
+					"response": []
+				},
+				{
+					"name": "User Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Logout the current user and invalidate their session"
 					},
 					"response": []
 				},
@@ -221,7 +251,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"John Updated\",\n  \"email\": \"john.updated@example.com\",\n  \"role\": \"admin\",\n  \"isActive\": true\n}"
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Updated\",\n  \"userName\": \"johnupdated\",\n  \"email\": \"john.updated@example.com\",\n  \"phone\": \"9876543210\",\n  \"gender\": \"Male\",\n  \"dob\": \"10-01-1995\",\n  \"role\": \"admin\",\n  \"isActive\": true\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/users/{{user_id}}",
@@ -290,7 +320,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"John Updated Profile\",\n  \"email\": \"john.profile@example.com\"\n}"
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Updated Profile\",\n  \"userName\": \"johnprofile\",\n  \"email\": \"john.profile@example.com\",\n  \"phone\": \"9876543210\",\n  \"gender\": \"Male\",\n  \"dob\": \"10-01-1995\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/users/profile",
@@ -344,7 +374,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"testpassword123\"\n}"
+									"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"userName\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"testpassword123\",\n  \"gender\": \"Male\",\n  \"dob\": \"01-01-1990\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/api/auth/register",
@@ -454,7 +484,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Test User Updated\",\n  \"email\": \"test.updated@example.com\"\n}"
+									"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User Updated\",\n  \"userName\": \"testuserupdated\",\n  \"email\": \"test.updated@example.com\",\n  \"phone\": \"9876543210\",\n  \"gender\": \"Male\",\n  \"dob\": \"01-01-1990\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/api/users/profile",
@@ -556,6 +586,185 @@
 				}
 			],
 			"description": "Pre-configured test scenarios to validate API functionality and error handling."
+		},
+		{
+			"name": "Session Management",
+			"item": [
+				{
+					"name": "Get User Sessions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/sessions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"sessions"
+							]
+						},
+						"description": "Get current user's active sessions"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sessions (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/sessions/all?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"sessions",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get all sessions with pagination (Admin only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout Specific Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessionId\": \"sess_1234567890_abc123def\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/sessions/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"sessions",
+								"logout"
+							]
+						},
+						"description": "Logout a specific session by session ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout All Sessions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/sessions/logout-all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"sessions",
+								"logout-all"
+							]
+						},
+						"description": "Logout all sessions for the current user"
+					},
+					"response": []
+				},
+				{
+					"name": "Terminate Session (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/sessions/sess_1234567890_abc123def",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"sessions",
+								"sess_1234567890_abc123def"
+							]
+						},
+						"description": "Terminate a specific session (Admin only)"
+					},
+					"response": []
+				}
+			],
+			"description": "Session management endpoints for tracking and managing user login sessions."
 		}
 	],
 	"event": [
@@ -590,7 +799,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:3000",
+			"value": "http://localhost:5050",
 			"type": "string"
 		}
 	]
