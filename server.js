@@ -9,11 +9,18 @@ var debug = require('debug')('swagger-javascript-express-node-mongo:server');
 var http = require('http');
 var connectDB = require('./config/database');
 var logger = require('./config/logger');
+var { logSystemInfo, logMemoryUsage } = require('./utils/systemInfo');
 
 // Display server startup banner
 logger.info('🚀 ===========================================');
 logger.info('🚀 Starting User CRUD API Server');
 logger.info('🚀 ===========================================');
+
+// Log system information
+logSystemInfo();
+
+// Log initial memory usage
+logMemoryUsage();
 
 // Connect to database
 connectDB();
@@ -113,10 +120,15 @@ function onListening() {
   logger.info('🎉 Server Successfully Started!');
   logger.info('🎉 ===========================================');
   logger.info(`🌐 Server running on: http://localhost:${addr.port}`);
-  logger.info(`📚 API Documentation: http://localhost:${addr.port}/api-docs`);
+  logger.info(`📚 API Documentation: http://localhost:${addr.port}/swagger-ui`);
   logger.info(`🔌 Listening on: ${bind}`);
   logger.info(`🕐 Server started at: ${new Date().toISOString()}`);
   logger.info('🎉 ===========================================');
+  
+  // Log memory usage every 5 minutes
+  setInterval(() => {
+    logMemoryUsage();
+  }, 5 * 60 * 1000);
   
   debug('Listening on ' + bind);
 }
