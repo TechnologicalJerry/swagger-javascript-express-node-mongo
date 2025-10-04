@@ -1,4 +1,5 @@
 const winston = require('winston');
+const DailyRotateFile = require('winston-daily-rotate-file');
 const path = require('path');
 
 // Define log levels
@@ -66,7 +67,7 @@ const transports = [
   }),
   
   // Daily rotate file for better log management
-  new winston.transports.DailyRotateFile({
+  new DailyRotateFile({
     filename: path.join('logs', 'application-%DATE%.log'),
     datePattern: 'YYYY-MM-DD',
     maxSize: '20m',
