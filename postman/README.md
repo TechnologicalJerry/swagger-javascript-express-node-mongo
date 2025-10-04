@@ -1,6 +1,6 @@
 # Postman Collection for User CRUD API
 
-This directory contains a comprehensive Postman collection for testing the User CRUD API with JWT authentication.
+This directory contains a comprehensive Postman collection for testing the Swagger Javascript Express Node MongoDB.
 
 ## 📁 Files Included
 
@@ -203,7 +203,7 @@ Authorization: Bearer <admin-token>
 
 ## 🔗 Related Resources
 
-- [API Documentation (Swagger)](http://localhost:3000/api-docs)
+- [API Documentation (Swagger)](http://localhost:5050/swagger-ui)
 - [Main README](../README.md)
 - [Postman Documentation](https://learning.postman.com/docs/)
 
