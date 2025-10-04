@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Swagger Documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
+app.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
   explorer: true,
   customCss: '.swagger-ui .topbar { display: none }',
   customSiteTitle: 'User CRUD API Documentation'
@@ -49,6 +49,16 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  // Log error details
+  winstonLogger.error('❌ Application Error:', {
+    message: err.message,
+    stack: err.stack,
+    url: req.originalUrl,
+    method: req.method,
+    ip: req.ip,
+    userAgent: req.get('User-Agent')
+  });
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
